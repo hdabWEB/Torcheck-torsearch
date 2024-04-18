@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Tor Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="tor.js"></script>
+    <style>
+        /* Custom CSS to style the header and footer */
+        header {
+            background-color: #333;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="text-center py-4">
+        <h1>Tor Browser Detection</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2><i class="fas fa-server"></i> Tor Status</h2>
+                <p id="torStatus" class="lead">Checking...</p>
+                <p id="publicIP" class="lead">Your public IP address: Loading...</p>
+            </div>
+            <div class="col-md-6">
+                <h2><i class="fas fa-code"></i> Tor JavaScript Behavior</h2>
+                <p id="torBehaviorStatus" class="lead">Checking...</p>
+                <h2><i class="fas fa-paint-brush"></i> Canvas Fingerprinting Protection</h2>
+                <p id="canvasFingerprintStatus" class="lead">Checking...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        <div class="container">
+            <p>
+                This JavaScript tool enables you to check for Canvas Fingerprinting Protection and to detect Tor exit nodes.
+			</p>
+			<p>
+				This JavaScript tool is hosted on
+				<a href="https://github.com/dehlirious/tor-detector" target="_blank">GitHub</a>.
+			</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to update the status
+        function updateStatus(elementId, status) {
+            const element = document.getElementById(elementId);
+            element.textContent = status;
+        }
+
+        // Main execution block
+        (async() => {
+            const fileData = await fetchTorExitNodes();
+            const ipAddress = await getPublicIP();
+
+            // Update the Tor status element
+            const torStatus = isTor(ipAddress, fileData);
+            updateStatus("torStatus", torStatus ? 'The IP is a Tor exit node.' : 'The IP is not a Tor exit node.');
+
+            // Update the public IP element
+            const publicIP = document.getElementById("publicIP");
+            publicIP.textContent = 'Your public IP address: ' + ipAddress;
+
+            // Update the Tor JavaScript Behavior status element
+            const torBehaviorStatus = hasTorJavaScriptBehavior();
+            updateStatus("torBehaviorStatus", 'JavaScript Behavior: ' + torBehaviorStatus);
+
+            // Update the Canvas Fingerprinting Protection status element
+            const canvasFingerprintStatus = hasCanvasFingerprintingProtection();
+            updateStatus("canvasFingerprintStatus", 'Canvas Fingerprinting Protection: ' + (!canvasFingerprintStatus));
+
+        })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
