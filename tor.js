@@ -85,5 +85,20 @@ function hasTorJavaScriptBehavior() {
   return [window.innerWidth, window.innerHeight, window.outerWidth, window.outerHeight, window.screen.width].every(val => val % 100 === 0);
 }
 
+// true = regular functionality, false = fingerprinting protection
+// will give console.warn 'Blocked X(url) from extracting canvas data because no user input was detected.'
+function hasCanvasFingerprintingProtection() {
+  const createCanvas = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = '#f60';
+    ctx.fillRect(125, 1, 62, 20);
+    ctx.fillStyle = '#069';
+    ctx.font = '11pt no-real-font-123';
+    ctx.fillText('Cwm fjordbank glyphs vext quiz, \ud83d\ude03', 2, 15);
+    return canvas.toDataURL();
+  };
+
   return createCanvas() === createCanvas();
 }
