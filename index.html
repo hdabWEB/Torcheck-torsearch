@@ -66,7 +66,7 @@
 
             // Update the Tor status element
             const torStatus = isTor(ipAddress, fileData);
-            updateStatus("torStatus", torStatus ? 'The IP is a Tor exit node.' : 'The IP is not a Tor exit node.');
+            updateStatus("torStatus", torStatus ? '<strong>The IP is a Tor exit node.</strong>' : 'The IP is not a Tor exit node.');
 
             // Update the public IP element
             const publicIP = document.getElementById("publicIP");
