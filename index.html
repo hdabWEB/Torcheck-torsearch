@@ -20,12 +20,12 @@ text-align: center;
 </head>
 <body>
     <!-- Header -->
-    <header class="container">
+    <header >
         <h1>Tor Browser Detection</h1>
     </header>
 
     <!-- Main Content -->
-    <div class="container">
+    <div >
         <div class="row">
             <div class="col-md-6">
                 <h2><i class="fas fa-server"></i> Tor Status</h2>
@@ -37,9 +37,9 @@ text-align: center;
 <br><br>
     
 <!---search engine--->
-    <h1 class="container">Search</h1>
+    <h1 >Search</h1>
     <!---ahmia.fi--->
-    <div class="container">
+    <div >
         <form action="https://ahmia.fi/search" id="searchform" method="get" autocomplete="off">
             <input aria-label="Search" id="searchbox" name="q" placeholder="Search using Ahmia…" size="25" type="search">
             <button aria-label="Search" type="submit"><span>Search</span></button>
@@ -47,22 +47,23 @@ text-align: center;
     </div>
     <br>
     <!---duckduckgo--->
-    <div class="container">
-        <form action="https://duckduckgo.com/" id="searchform" method="get" autocomplete="off">
-            <input aria-label="Search" id="searchbox" name="q" placeholder="Search using DuckDuckGo…" size="25" type="search">
+    <div >
+        <form action="https://duckduckgo.com/" method="get" autocomplete="off">
+            <input aria-label="Search" name="q" placeholder="Search using DuckDuckGo…" size="25" type="search">
             <button aria-label="Search" type="submit"><span>Search</span></button>
         </form>
     </div>
+    <br>
     <!---google--->
-    <div class="container">
-      <form action="https://www.google.com/search" class="searchform" method="get" name="searchform">
-				<input placeholder="Search using Google…" class="form-control search" name="q" required="required" style="color: black;" type="search">
-				<button class="button" type="submit">Search</button>
+    <div >
+      <form action="https://www.google.com/search" method="get" autocomplete="off" name="searchform">
+				<input placeholder="Search using Google…" name="q" required="required" type="search">
+				<button type="submit">Search</button>
 			</form>
     </div>
 
 <br><br><br><br><br><br>
-    <footer class="container">
+    <footer >
         <details>
             <summary>Details about this site.</summary>
             <p>copyright 2024 (c) by <a href="github.com/programmerhjk">HJK</a></p><br>
